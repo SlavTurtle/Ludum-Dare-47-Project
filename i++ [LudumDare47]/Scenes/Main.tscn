@@ -1,0 +1,1510 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scenes/Block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/LevelSelector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Hero.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ScriptsAndSprites/Background.gd" type="Script" id=4]
+[ext_resource path="res://ScriptsAndSprites/Hero.png" type="Texture" id=5]
+[ext_resource path="res://ScriptsAndSprites/BasicBlock.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Spike.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ScriptsAndSprites/arrows.png" type="Texture" id=8]
+[ext_resource path="res://ScriptsAndSprites/Title.gd" type="Script" id=9]
+[ext_resource path="res://ScriptsAndSprites/Shower.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Invisi.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/SpecialCoinLel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ScriptsAndSprites/font2.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scenes/RythmBlock.tscn" type="PackedScene" id=15]
+[ext_resource path="res://ScriptsAndSprites/PointsFound.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 240, 24 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 13 )
+
+[node name="Main" type="Node"]
+
+[node name="NotLevels" type="Node2D" parent="."]
+
+[node name="BasicBlock" type="Sprite" parent="NotLevels"]
+visible = false
+position = Vector2( 240, 240 )
+scale = Vector2( 10, 10 )
+z_index = -15
+texture = ExtResource( 6 )
+script = ExtResource( 4 )
+
+[node name="Floor" type="StaticBody2D" parent="NotLevels"]
+position = Vector2( 240, 456 )
+scale = Vector2( 3, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BasicBlock" type="Sprite" parent="NotLevels/Floor"]
+scale = Vector2( 10, 1 )
+texture = ExtResource( 6 )
+
+[node name="FloorCollision" type="CollisionShape2D" parent="NotLevels/Floor"]
+shape = SubResource( 1 )
+
+[node name="Shower" type="Sprite" parent="NotLevels"]
+modulate = Color( 0.360784, 0.133333, 0.133333, 1 )
+position = Vector2( 72, 264 )
+scale = Vector2( 1, 10 )
+texture = ExtResource( 5 )
+script = ExtResource( 10 )
+
+[node name="Hero" type="Sprite" parent="NotLevels/Shower"]
+position = Vector2( 336, 2.4 )
+texture = ExtResource( 5 )
+
+[node name="arrows" type="Sprite" parent="NotLevels"]
+visible = false
+position = Vector2( 240, 168 )
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="Tween" type="Tween" parent="NotLevels/arrows"]
+
+[node name="Levels" type="Node2D" parent="."]
+
+[node name="LevelSelector" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Block" parent="Levels/LevelSelector" instance=ExtResource( 1 )]
+position = Vector2( 216, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector" instance=ExtResource( 18 )]
+position = Vector2( 264, 360 )
+
+[node name="LevelSelector2" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 2
+
+[node name="Block" parent="Levels/LevelSelector2" instance=ExtResource( 1 )]
+position = Vector2( 216, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector2" instance=ExtResource( 1 )]
+position = Vector2( 216, 408 )
+
+[node name="Block3" parent="Levels/LevelSelector2" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="Block4" parent="Levels/LevelSelector2" instance=ExtResource( 1 )]
+position = Vector2( 264, 360 )
+
+[node name="Coin" parent="Levels/LevelSelector2" instance=ExtResource( 18 )]
+position = Vector2( 360, 264 )
+
+[node name="LevelSelector3" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 3
+
+[node name="Block2" parent="Levels/LevelSelector3" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="Block3" parent="Levels/LevelSelector3" instance=ExtResource( 1 )]
+position = Vector2( 264, 360 )
+
+[node name="Spike" parent="Levels/LevelSelector3" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector3" instance=ExtResource( 18 )]
+position = Vector2( 120, 216 )
+
+[node name="LevelSelector4" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 4
+
+[node name="Spike" parent="Levels/LevelSelector4" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Block" parent="Levels/LevelSelector4" instance=ExtResource( 1 )]
+position = Vector2( 216, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector4" instance=ExtResource( 18 )]
+position = Vector2( 264, 360 )
+
+[node name="LevelSelector5" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 5
+
+[node name="Block" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 168, 312 )
+
+[node name="Block2" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 120, 408 )
+
+[node name="Block3" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 264, 264 )
+
+[node name="Block4" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 312, 408 )
+
+[node name="Block5" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 312, 360 )
+
+[node name="Block6" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 312, 312 )
+
+[node name="Block7" parent="Levels/LevelSelector5" instance=ExtResource( 1 )]
+position = Vector2( 312, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector5" instance=ExtResource( 18 )]
+position = Vector2( 264, 312 )
+
+[node name="LevelSelector6" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 6
+
+[node name="Block" parent="Levels/LevelSelector6" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector6" instance=ExtResource( 1 )]
+position = Vector2( 312, 360 )
+
+[node name="Spike" parent="Levels/LevelSelector6" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector6" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike3" parent="Levels/LevelSelector6" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike4" parent="Levels/LevelSelector6" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector6" instance=ExtResource( 18 )]
+position = Vector2( 360, 216 )
+
+[node name="LevelSelector7" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 7
+
+[node name="Block" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 216, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 168, 264 )
+
+[node name="Block3" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 216, 168 )
+
+[node name="Block4" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 264, 168 )
+
+[node name="Block5" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 312, 168 )
+
+[node name="Block6" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 312, 216 )
+
+[node name="Block7" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 312, 408 )
+
+[node name="Block8" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 312, 360 )
+
+[node name="Block9" parent="Levels/LevelSelector7" instance=ExtResource( 1 )]
+position = Vector2( 312, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector7" instance=ExtResource( 18 )]
+position = Vector2( 264, 216 )
+
+[node name="LevelSelector8" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 8
+
+[node name="Block" parent="Levels/LevelSelector8" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike" parent="Levels/LevelSelector8" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector8" instance=ExtResource( 1 )]
+position = Vector2( 360, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector8" instance=ExtResource( 18 )]
+position = Vector2( 312, 408 )
+
+[node name="LevelSelector9" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 9
+
+[node name="Spike" parent="Levels/LevelSelector9" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Block" parent="Levels/LevelSelector9" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Spike2" parent="Levels/LevelSelector9" instance=ExtResource( 7 )]
+position = Vector2( 264, 312 )
+
+[node name="Block2" parent="Levels/LevelSelector9" instance=ExtResource( 1 )]
+position = Vector2( 264, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector9" instance=ExtResource( 18 )]
+position = Vector2( 264, 360 )
+
+[node name="LevelSelector10" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 10
+
+[node name="Block" parent="Levels/LevelSelector10" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector10" instance=ExtResource( 1 )]
+position = Vector2( 168, 312 )
+
+[node name="Block3" parent="Levels/LevelSelector10" instance=ExtResource( 1 )]
+position = Vector2( 120, 216 )
+
+[node name="Block4" parent="Levels/LevelSelector10" instance=ExtResource( 1 )]
+position = Vector2( 264, 120 )
+
+[node name="Spike3" parent="Levels/LevelSelector10" instance=ExtResource( 7 )]
+position = Vector2( 360, 312 )
+
+[node name="Spike2" parent="Levels/LevelSelector10" instance=ExtResource( 7 )]
+position = Vector2( 360, 216 )
+
+[node name="Spike4" parent="Levels/LevelSelector10" instance=ExtResource( 7 )]
+position = Vector2( 360, 408 )
+
+[node name="Block5" parent="Levels/LevelSelector10" instance=ExtResource( 1 )]
+position = Vector2( 360, 120 )
+
+[node name="Coin" parent="Levels/LevelSelector10" instance=ExtResource( 18 )]
+position = Vector2( 312, 168 )
+
+[node name="LevelSelector11" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 11
+
+[node name="Spike" parent="Levels/LevelSelector11" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Block" parent="Levels/LevelSelector11" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector11" instance=ExtResource( 18 )]
+position = Vector2( 216, 408 )
+
+[node name="LevelSelector12" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 12
+
+[node name="Block" parent="Levels/LevelSelector12" instance=ExtResource( 11 )]
+position = Vector2( 264, 408 )
+
+[node name="Invisi" parent="Levels/LevelSelector12" instance=ExtResource( 11 )]
+position = Vector2( 264, 360 )
+
+[node name="Invisi2" parent="Levels/LevelSelector12" instance=ExtResource( 11 )]
+
+[node name="Coin" parent="Levels/LevelSelector12" instance=ExtResource( 18 )]
+position = Vector2( 360, 216 )
+
+[node name="LevelSelector13" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 13
+
+[node name="Spike" parent="Levels/LevelSelector13" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector13" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike3" parent="Levels/LevelSelector13" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Invisi" parent="Levels/LevelSelector13" instance=ExtResource( 11 )]
+position = Vector2( 312, 360 )
+
+[node name="Invisi2" parent="Levels/LevelSelector13" instance=ExtResource( 11 )]
+position = Vector2( 312, 360 )
+
+[node name="Spike4" parent="Levels/LevelSelector13" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Block" parent="Levels/LevelSelector13" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Coin" parent="Levels/LevelSelector13" instance=ExtResource( 18 )]
+position = Vector2( 120, 216 )
+
+[node name="LevelSelector14" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 14
+
+[node name="Invisi" parent="Levels/LevelSelector14" instance=ExtResource( 11 )]
+position = Vector2( 120, 360 )
+
+[node name="Invisi2" parent="Levels/LevelSelector14" instance=ExtResource( 11 )]
+position = Vector2( 216, 312 )
+
+[node name="Invisi3" parent="Levels/LevelSelector14" instance=ExtResource( 11 )]
+position = Vector2( 168, 216 )
+
+[node name="Spike" parent="Levels/LevelSelector14" instance=ExtResource( 7 )]
+position = Vector2( 360, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector14" instance=ExtResource( 7 )]
+position = Vector2( 360, 360 )
+
+[node name="Spike3" parent="Levels/LevelSelector14" instance=ExtResource( 7 )]
+position = Vector2( 360, 264 )
+
+[node name="Block" parent="Levels/LevelSelector14" instance=ExtResource( 1 )]
+position = Vector2( 264, 216 )
+
+[node name="Spike4" parent="Levels/LevelSelector14" instance=ExtResource( 7 )]
+position = Vector2( 360, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector14" instance=ExtResource( 18 )]
+position = Vector2( 312, 264 )
+
+[node name="LevelSelector15" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 15
+
+[node name="Block" parent="Levels/LevelSelector15" instance=ExtResource( 1 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike" parent="Levels/LevelSelector15" instance=ExtResource( 7 )]
+position = Vector2( 216, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector15" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Block3" parent="Levels/LevelSelector15" instance=ExtResource( 1 )]
+position = Vector2( 264, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector15" instance=ExtResource( 11 )]
+position = Vector2( 168, 216 )
+
+[node name="Spike2" parent="Levels/LevelSelector15" instance=ExtResource( 7 )]
+position = Vector2( 360, 264 )
+
+[node name="Spike3" parent="Levels/LevelSelector15" instance=ExtResource( 7 )]
+position = Vector2( 360, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector15" instance=ExtResource( 11 )]
+position = Vector2( 312, 168 )
+
+[node name="Coin" parent="Levels/LevelSelector15" instance=ExtResource( 18 )]
+position = Vector2( 168, 24 )
+
+[node name="LevelSelector16" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 16
+
+[node name="RythmBlock" parent="Levels/LevelSelector16" instance=ExtResource( 15 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike" parent="Levels/LevelSelector16" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector16" instance=ExtResource( 18 )]
+position = Vector2( 216, 216 )
+
+[node name="LevelSelector17" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 17
+
+[node name="RythmBlock" parent="Levels/LevelSelector17" instance=ExtResource( 15 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector17" instance=ExtResource( 15 )]
+position = Vector2( 264, 312 )
+
+[node name="Spike" parent="Levels/LevelSelector17" instance=ExtResource( 7 )]
+position = Vector2( 264, 360 )
+
+[node name="Spike2" parent="Levels/LevelSelector17" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector17" instance=ExtResource( 18 )]
+position = Vector2( 120, 216 )
+
+[node name="LevelSelector18" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 18
+
+[node name="Block" parent="Levels/LevelSelector18" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector18" instance=ExtResource( 15 )]
+position = Vector2( 168, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector18" instance=ExtResource( 15 )]
+position = Vector2( 168, 312 )
+
+[node name="Block2" parent="Levels/LevelSelector18" instance=ExtResource( 1 )]
+position = Vector2( 168, 264 )
+
+[node name="Block3" parent="Levels/LevelSelector18" instance=ExtResource( 1 )]
+position = Vector2( 264, 360 )
+
+[node name="Block4" parent="Levels/LevelSelector18" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector18" instance=ExtResource( 15 )]
+position = Vector2( 264, 312 )
+
+[node name="RythmBlock4" parent="Levels/LevelSelector18" instance=ExtResource( 15 )]
+position = Vector2( 264, 264 )
+
+[node name="Block5" parent="Levels/LevelSelector18" instance=ExtResource( 1 )]
+position = Vector2( 264, 216 )
+
+[node name="Coin" parent="Levels/LevelSelector18" instance=ExtResource( 18 )]
+position = Vector2( 264, 120 )
+
+[node name="LevelSelector19" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 19
+
+[node name="RythmBlock" parent="Levels/LevelSelector19" instance=ExtResource( 15 )]
+position = Vector2( 168, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector19" instance=ExtResource( 15 )]
+position = Vector2( 312, 360 )
+
+[node name="Invisi" parent="Levels/LevelSelector19" instance=ExtResource( 11 )]
+position = Vector2( 216, 264 )
+
+[node name="Invisi2" parent="Levels/LevelSelector19" instance=ExtResource( 11 )]
+position = Vector2( 264, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector19" instance=ExtResource( 18 )]
+position = Vector2( 120, 120 )
+
+[node name="Spike" parent="Levels/LevelSelector19" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector19" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="LevelSelector20" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 20
+
+[node name="RythmBlock" parent="Levels/LevelSelector20" instance=ExtResource( 15 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike" parent="Levels/LevelSelector20" instance=ExtResource( 7 )]
+position = Vector2( 168, 360 )
+
+[node name="Spike2" parent="Levels/LevelSelector20" instance=ExtResource( 7 )]
+position = Vector2( 168, 312 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector20" instance=ExtResource( 15 )]
+position = Vector2( 312, 408 )
+
+[node name="Spike3" parent="Levels/LevelSelector20" instance=ExtResource( 7 )]
+position = Vector2( 312, 360 )
+
+[node name="Spike4" parent="Levels/LevelSelector20" instance=ExtResource( 7 )]
+position = Vector2( 312, 312 )
+
+[node name="Block" parent="Levels/LevelSelector20" instance=ExtResource( 1 )]
+position = Vector2( 216, 360 )
+
+[node name="Coin" parent="Levels/LevelSelector20" instance=ExtResource( 18 )]
+position = Vector2( 216, 264 )
+
+[node name="LevelSelector21" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 21
+
+[node name="Block" parent="Levels/LevelSelector21" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector21" instance=ExtResource( 1 )]
+position = Vector2( 120, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector21" instance=ExtResource( 11 )]
+position = Vector2( 264, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector21" instance=ExtResource( 18 )]
+position = Vector2( 120, 72 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector21" instance=ExtResource( 15 )]
+position = Vector2( 216, 216 )
+
+[node name="LevelSelector22" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 22
+
+[node name="Spike" parent="Levels/LevelSelector22" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector22" instance=ExtResource( 15 )]
+position = Vector2( 120, 360 )
+
+[node name="Spike2" parent="Levels/LevelSelector22" instance=ExtResource( 7 )]
+position = Vector2( 168, 360 )
+
+[node name="Block" parent="Levels/LevelSelector22" instance=ExtResource( 1 )]
+position = Vector2( 168, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector22" instance=ExtResource( 18 )]
+position = Vector2( 216, 408 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector22" instance=ExtResource( 15 )]
+position = Vector2( 216, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector22" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="Block3" parent="Levels/LevelSelector22" instance=ExtResource( 1 )]
+position = Vector2( 264, 360 )
+
+[node name="Block4" parent="Levels/LevelSelector22" instance=ExtResource( 1 )]
+position = Vector2( 264, 312 )
+
+[node name="LevelSelector23" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 23
+
+[node name="RythmBlock" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 168, 360 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 168, 312 )
+
+[node name="RythmBlock4" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 264, 408 )
+
+[node name="RythmBlock5" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 264, 360 )
+
+[node name="RythmBlock7" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 360, 408 )
+
+[node name="RythmBlock8" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 360, 360 )
+
+[node name="RythmBlock9" parent="Levels/LevelSelector23" instance=ExtResource( 15 )]
+position = Vector2( 360, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector23" instance=ExtResource( 18 )]
+position = Vector2( 168, 216 )
+
+[node name="Spike" parent="Levels/LevelSelector23" instance=ExtResource( 7 )]
+position = Vector2( 360, 264 )
+
+[node name="Spike2" parent="Levels/LevelSelector23" instance=ExtResource( 7 )]
+position = Vector2( 360, 216 )
+
+[node name="LevelSelector24" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 24
+
+[node name="Block" parent="Levels/LevelSelector24" instance=ExtResource( 1 )]
+position = Vector2( 216, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector24" instance=ExtResource( 1 )]
+position = Vector2( 216, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector24" instance=ExtResource( 11 )]
+position = Vector2( 312, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector24" instance=ExtResource( 18 )]
+position = Vector2( 216, 264 )
+
+[node name="LevelSelector25" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 25
+
+[node name="Invisi" parent="Levels/LevelSelector25" instance=ExtResource( 11 )]
+position = Vector2( 168, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector25" instance=ExtResource( 11 )]
+position = Vector2( 216, 312 )
+
+[node name="Invisi3" parent="Levels/LevelSelector25" instance=ExtResource( 11 )]
+position = Vector2( 360, 264 )
+
+[node name="Invisi4" parent="Levels/LevelSelector25" instance=ExtResource( 11 )]
+position = Vector2( 216, 168 )
+
+[node name="Invisi5" parent="Levels/LevelSelector25" instance=ExtResource( 11 )]
+position = Vector2( 120, 120 )
+
+[node name="Spike" parent="Levels/LevelSelector25" instance=ExtResource( 7 )]
+position = Vector2( 168, 168 )
+
+[node name="Coin" parent="Levels/LevelSelector25" instance=ExtResource( 18 )]
+position = Vector2( 120, 24 )
+
+[node name="LevelSelector26" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 26
+
+[node name="Block" parent="Levels/LevelSelector26" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector26" instance=ExtResource( 18 )]
+position = Vector2( 360, 216 )
+
+[node name="Spike" parent="Levels/LevelSelector26" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector26" instance=ExtResource( 7 )]
+position = Vector2( 312, 264 )
+
+[node name="Block2" parent="Levels/LevelSelector26" instance=ExtResource( 1 )]
+position = Vector2( 312, 360 )
+
+[node name="Block3" parent="Levels/LevelSelector26" instance=ExtResource( 1 )]
+position = Vector2( 312, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector26" instance=ExtResource( 11 )]
+position = Vector2( 360, 360 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector26" instance=ExtResource( 15 )]
+position = Vector2( 360, 264 )
+
+[node name="LevelSelector27" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 27
+
+[node name="Block" parent="Levels/LevelSelector27" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Invisi" parent="Levels/LevelSelector27" instance=ExtResource( 11 )]
+position = Vector2( 312, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector27" instance=ExtResource( 18 )]
+position = Vector2( 312, 168 )
+
+[node name="Spike" parent="Levels/LevelSelector27" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector27" instance=ExtResource( 15 )]
+position = Vector2( 312, 216 )
+
+[node name="LevelSelector28" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 28
+
+[node name="RythmBlock" parent="Levels/LevelSelector28" instance=ExtResource( 15 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector28" instance=ExtResource( 15 )]
+position = Vector2( 216, 312 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector28" instance=ExtResource( 15 )]
+position = Vector2( 264, 216 )
+
+[node name="RythmBlock4" parent="Levels/LevelSelector28" instance=ExtResource( 15 )]
+position = Vector2( 312, 120 )
+
+[node name="Coin" parent="Levels/LevelSelector28" instance=ExtResource( 18 )]
+position = Vector2( 312, 72 )
+
+[node name="LevelSelector29" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 29
+
+[node name="Spike" parent="Levels/LevelSelector29" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector29" instance=ExtResource( 15 )]
+position = Vector2( 216, 408 )
+
+[node name="Invisi" parent="Levels/LevelSelector29" instance=ExtResource( 11 )]
+position = Vector2( 360, 312 )
+
+[node name="Invisi2" parent="Levels/LevelSelector29" instance=ExtResource( 11 )]
+position = Vector2( 168, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector29" instance=ExtResource( 18 )]
+position = Vector2( 168, 120 )
+
+[node name="LevelSelector30" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 30
+
+[node name="Spike" parent="Levels/LevelSelector30" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Block" parent="Levels/LevelSelector30" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Spike2" parent="Levels/LevelSelector30" instance=ExtResource( 7 )]
+position = Vector2( 168, 264 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector30" instance=ExtResource( 15 )]
+position = Vector2( 216, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector30" instance=ExtResource( 15 )]
+position = Vector2( 264, 360 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector30" instance=ExtResource( 15 )]
+position = Vector2( 312, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector30" instance=ExtResource( 1 )]
+position = Vector2( 216, 264 )
+
+[node name="Block3" parent="Levels/LevelSelector30" instance=ExtResource( 1 )]
+position = Vector2( 264, 264 )
+
+[node name="Block4" parent="Levels/LevelSelector30" instance=ExtResource( 1 )]
+position = Vector2( 312, 264 )
+
+[node name="Spike3" parent="Levels/LevelSelector30" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike4" parent="Levels/LevelSelector30" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector30" instance=ExtResource( 18 )]
+position = Vector2( 360, 216 )
+
+[node name="Block5" parent="Levels/LevelSelector30" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="LevelSelector31" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 31
+
+[node name="Invisi" parent="Levels/LevelSelector31" instance=ExtResource( 11 )]
+position = Vector2( 216, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector31" instance=ExtResource( 11 )]
+position = Vector2( 216, 264 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector31" instance=ExtResource( 15 )]
+position = Vector2( 264, 312 )
+
+[node name="Spike" parent="Levels/LevelSelector31" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector31" instance=ExtResource( 18 )]
+position = Vector2( 168, 168 )
+
+[node name="Block" parent="Levels/LevelSelector31" instance=ExtResource( 1 )]
+position = Vector2( 168, 264 )
+
+[node name="LevelSelector32" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 32
+
+[node name="Spike" parent="Levels/LevelSelector32" instance=ExtResource( 7 )]
+position = Vector2( 120, 408 )
+
+[node name="Invisi" parent="Levels/LevelSelector32" instance=ExtResource( 11 )]
+position = Vector2( 120, 360 )
+
+[node name="Block" parent="Levels/LevelSelector32" instance=ExtResource( 1 )]
+position = Vector2( 168, 312 )
+
+[node name="Spike2" parent="Levels/LevelSelector32" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike3" parent="Levels/LevelSelector32" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike4" parent="Levels/LevelSelector32" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike5" parent="Levels/LevelSelector32" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Spike6" parent="Levels/LevelSelector32" instance=ExtResource( 7 )]
+position = Vector2( 360, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector32" instance=ExtResource( 11 )]
+position = Vector2( 360, 360 )
+
+[node name="Coin" parent="Levels/LevelSelector32" instance=ExtResource( 18 )]
+position = Vector2( 360, 168 )
+
+[node name="LevelSelector33" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 33
+
+[node name="Block" parent="Levels/LevelSelector33" instance=ExtResource( 1 )]
+position = Vector2( 120, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector33" instance=ExtResource( 1 )]
+position = Vector2( 312, 408 )
+
+[node name="Spike" parent="Levels/LevelSelector33" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector33" instance=ExtResource( 7 )]
+position = Vector2( 216, 360 )
+
+[node name="Spike3" parent="Levels/LevelSelector33" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector33" instance=ExtResource( 18 )]
+position = Vector2( 216, 264 )
+
+[node name="LevelSelector34" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 34
+
+[node name="RythmBlock" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 120, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 168, 408 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 120, 408 )
+
+[node name="RythmBlock4" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 216, 408 )
+
+[node name="RythmBlock5" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 360, 360 )
+
+[node name="RythmBlock6" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 264, 408 )
+
+[node name="RythmBlock7" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 312, 408 )
+
+[node name="RythmBlock8" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 360, 408 )
+
+[node name="Spike" parent="Levels/LevelSelector34" instance=ExtResource( 7 )]
+position = Vector2( 120, 312 )
+
+[node name="Spike2" parent="Levels/LevelSelector34" instance=ExtResource( 7 )]
+position = Vector2( 360, 312 )
+
+[node name="RythmBlock9" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 120, 264 )
+
+[node name="RythmBlock10" parent="Levels/LevelSelector34" instance=ExtResource( 15 )]
+position = Vector2( 360, 264 )
+
+[node name="Block2" parent="Levels/LevelSelector34" instance=ExtResource( 1 )]
+position = Vector2( 264, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector34" instance=ExtResource( 18 )]
+position = Vector2( 360, 168 )
+
+[node name="LevelSelector35" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 35
+
+[node name="Invisi" parent="Levels/LevelSelector35" instance=ExtResource( 11 )]
+position = Vector2( 120, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector35" instance=ExtResource( 11 )]
+position = Vector2( 120, 264 )
+
+[node name="Invisi3" parent="Levels/LevelSelector35" instance=ExtResource( 11 )]
+position = Vector2( 216, 312 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector35" instance=ExtResource( 15 )]
+position = Vector2( 216, 168 )
+
+[node name="Coin" parent="Levels/LevelSelector35" instance=ExtResource( 18 )]
+position = Vector2( 360, 72 )
+
+[node name="LevelSelector36" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 36
+
+[node name="Block" parent="Levels/LevelSelector36" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector36" instance=ExtResource( 1 )]
+position = Vector2( 216, 264 )
+
+[node name="Spike" parent="Levels/LevelSelector36" instance=ExtResource( 7 )]
+position = Vector2( 264, 216 )
+
+[node name="Spike2" parent="Levels/LevelSelector36" instance=ExtResource( 7 )]
+position = Vector2( 264, 168 )
+
+[node name="Coin" parent="Levels/LevelSelector36" instance=ExtResource( 18 )]
+position = Vector2( 120, 24 )
+
+[node name="Invisi" parent="Levels/LevelSelector36" instance=ExtResource( 11 )]
+position = Vector2( 120, 168 )
+
+[node name="Invisi2" parent="Levels/LevelSelector36" instance=ExtResource( 11 )]
+position = Vector2( 264, 72 )
+
+[node name="Spike3" parent="Levels/LevelSelector36" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="LevelSelector37" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 37
+
+[node name="Spike" parent="Levels/LevelSelector37" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector37" instance=ExtResource( 7 )]
+position = Vector2( 264, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector37" instance=ExtResource( 18 )]
+position = Vector2( 264, 120 )
+
+[node name="Block" parent="Levels/LevelSelector37" instance=ExtResource( 1 )]
+position = Vector2( 360, 360 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector37" instance=ExtResource( 15 )]
+position = Vector2( 264, 216 )
+
+[node name="Block2" parent="Levels/LevelSelector37" instance=ExtResource( 1 )]
+position = Vector2( 264, 360 )
+
+[node name="Block3" parent="Levels/LevelSelector37" instance=ExtResource( 1 )]
+position = Vector2( 312, 264 )
+
+[node name="LevelSelector38" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 38
+
+[node name="Block" parent="Levels/LevelSelector38" instance=ExtResource( 1 )]
+position = Vector2( 216, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector38" instance=ExtResource( 1 )]
+position = Vector2( 312, 264 )
+
+[node name="Block3" parent="Levels/LevelSelector38" instance=ExtResource( 1 )]
+position = Vector2( 120, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector38" instance=ExtResource( 18 )]
+position = Vector2( 360, 120 )
+
+[node name="Spike" parent="Levels/LevelSelector38" instance=ExtResource( 7 )]
+position = Vector2( 264, 264 )
+
+[node name="Spike2" parent="Levels/LevelSelector38" instance=ExtResource( 7 )]
+position = Vector2( 264, 360 )
+
+[node name="LevelSelector39" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 39
+
+[node name="Invisi" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 312, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 312, 360 )
+
+[node name="Invisi3" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 216, 360 )
+
+[node name="Invisi4" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 168, 360 )
+
+[node name="Invisi5" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 120, 312 )
+
+[node name="Invisi6" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 120, 264 )
+
+[node name="Invisi7" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 216, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector39" instance=ExtResource( 18 )]
+position = Vector2( 168, 216 )
+
+[node name="Invisi8" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 120, 216 )
+
+[node name="Invisi9" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 168, 168 )
+
+[node name="Invisi10" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 216, 216 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector39" instance=ExtResource( 15 )]
+position = Vector2( 168, 312 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector39" instance=ExtResource( 15 )]
+position = Vector2( 168, 264 )
+
+[node name="Invisi11" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 360, 312 )
+
+[node name="Invisi12" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 264, 264 )
+
+[node name="Invisi13" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 360, 264 )
+
+[node name="Invisi14" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 360, 216 )
+
+[node name="Invisi15" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 312, 168 )
+
+[node name="Invisi16" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 120, 168 )
+
+[node name="Invisi17" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 216, 168 )
+
+[node name="Invisi18" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 216, 72 )
+
+[node name="Invisi19" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 264, 72 )
+
+[node name="Invisi20" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 312, 120 )
+
+[node name="Invisi21" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 360, 168 )
+
+[node name="Invisi22" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 312, 72 )
+
+[node name="Invisi23" parent="Levels/LevelSelector39" instance=ExtResource( 11 )]
+position = Vector2( 120, 120 )
+
+[node name="Spike" parent="Levels/LevelSelector39" instance=ExtResource( 7 )]
+position = Vector2( 120, 72 )
+
+[node name="LevelSelector40" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 40
+
+[node name="Coin" parent="Levels/LevelSelector40" instance=ExtResource( 18 )]
+position = Vector2( 312, 408 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector40" instance=ExtResource( 15 )]
+position = Vector2( 312, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector40" instance=ExtResource( 15 )]
+position = Vector2( 216, 408 )
+
+[node name="Block" parent="Levels/LevelSelector40" instance=ExtResource( 1 )]
+position = Vector2( 264, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector40" instance=ExtResource( 1 )]
+position = Vector2( 360, 312 )
+
+[node name="Block3" parent="Levels/LevelSelector40" instance=ExtResource( 1 )]
+position = Vector2( 264, 360 )
+
+[node name="Block4" parent="Levels/LevelSelector40" instance=ExtResource( 1 )]
+position = Vector2( 360, 360 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector40" instance=ExtResource( 15 )]
+position = Vector2( 216, 360 )
+
+[node name="Block5" parent="Levels/LevelSelector40" instance=ExtResource( 1 )]
+position = Vector2( 168, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector40" instance=ExtResource( 11 )]
+position = Vector2( 216, 264 )
+
+[node name="Invisi2" parent="Levels/LevelSelector40" instance=ExtResource( 11 )]
+position = Vector2( 264, 264 )
+
+[node name="Invisi3" parent="Levels/LevelSelector40" instance=ExtResource( 11 )]
+position = Vector2( 312, 264 )
+
+[node name="RythmBlock4" parent="Levels/LevelSelector40" instance=ExtResource( 15 )]
+position = Vector2( 216, 312 )
+
+[node name="RythmBlock5" parent="Levels/LevelSelector40" instance=ExtResource( 15 )]
+position = Vector2( 312, 312 )
+
+[node name="RythmBlock6" parent="Levels/LevelSelector40" instance=ExtResource( 15 )]
+position = Vector2( 264, 312 )
+
+[node name="LevelSelector41" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 41
+
+[node name="Block" parent="Levels/LevelSelector41" instance=ExtResource( 1 )]
+position = Vector2( 120, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector41" instance=ExtResource( 1 )]
+position = Vector2( 216, 312 )
+
+[node name="Block3" parent="Levels/LevelSelector41" instance=ExtResource( 1 )]
+position = Vector2( 120, 216 )
+
+[node name="Invisi" parent="Levels/LevelSelector41" instance=ExtResource( 11 )]
+position = Vector2( 264, 168 )
+
+[node name="Spike" parent="Levels/LevelSelector41" instance=ExtResource( 7 )]
+position = Vector2( 216, 360 )
+
+[node name="Coin" parent="Levels/LevelSelector41" instance=ExtResource( 18 )]
+position = Vector2( 312, 216 )
+
+[node name="Spike2" parent="Levels/LevelSelector41" instance=ExtResource( 7 )]
+position = Vector2( 312, 264 )
+
+[node name="Spike3" parent="Levels/LevelSelector41" instance=ExtResource( 7 )]
+position = Vector2( 264, 216 )
+
+[node name="LevelSelector42" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 42
+
+[node name="RythmBlock" parent="Levels/LevelSelector42" instance=ExtResource( 15 )]
+position = Vector2( 120, 360 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector42" instance=ExtResource( 15 )]
+position = Vector2( 168, 168 )
+
+[node name="Spike" parent="Levels/LevelSelector42" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector42" instance=ExtResource( 7 )]
+position = Vector2( 264, 360 )
+
+[node name="Spike3" parent="Levels/LevelSelector42" instance=ExtResource( 7 )]
+position = Vector2( 264, 312 )
+
+[node name="Spike4" parent="Levels/LevelSelector42" instance=ExtResource( 7 )]
+position = Vector2( 264, 264 )
+
+[node name="Spike5" parent="Levels/LevelSelector42" instance=ExtResource( 7 )]
+position = Vector2( 264, 216 )
+
+[node name="Invisi" parent="Levels/LevelSelector42" instance=ExtResource( 11 )]
+position = Vector2( 264, 168 )
+
+[node name="Coin" parent="Levels/LevelSelector42" instance=ExtResource( 18 )]
+position = Vector2( 312, 264 )
+
+[node name="Invisi2" parent="Levels/LevelSelector42" instance=ExtResource( 11 )]
+position = Vector2( 312, 360 )
+
+[node name="Invisi3" parent="Levels/LevelSelector42" instance=ExtResource( 11 )]
+position = Vector2( 168, 264 )
+
+[node name="LevelSelector43" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 43
+
+[node name="Block" parent="Levels/LevelSelector43" instance=ExtResource( 1 )]
+position = Vector2( 120, 360 )
+
+[node name="Invisi" parent="Levels/LevelSelector43" instance=ExtResource( 11 )]
+position = Vector2( 216, 312 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector43" instance=ExtResource( 15 )]
+position = Vector2( 120, 216 )
+
+[node name="Invisi2" parent="Levels/LevelSelector43" instance=ExtResource( 11 )]
+position = Vector2( 216, 120 )
+
+[node name="Block2" parent="Levels/LevelSelector43" instance=ExtResource( 1 )]
+position = Vector2( 312, 168 )
+
+[node name="Coin" parent="Levels/LevelSelector43" instance=ExtResource( 18 )]
+position = Vector2( 360, 168 )
+
+[node name="Spike" parent="Levels/LevelSelector43" instance=ExtResource( 7 )]
+position = Vector2( 312, 216 )
+
+[node name="LevelSelector44" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 44
+
+[node name="Block" parent="Levels/LevelSelector44" instance=ExtResource( 1 )]
+position = Vector2( 168, 360 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector44" instance=ExtResource( 15 )]
+position = Vector2( 168, 312 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector44" instance=ExtResource( 15 )]
+position = Vector2( 168, 264 )
+
+[node name="Block2" parent="Levels/LevelSelector44" instance=ExtResource( 1 )]
+position = Vector2( 264, 264 )
+
+[node name="Spike2" parent="Levels/LevelSelector44" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Coin" parent="Levels/LevelSelector44" instance=ExtResource( 18 )]
+position = Vector2( 264, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector44" instance=ExtResource( 11 )]
+position = Vector2( 168, 168 )
+
+[node name="Invisi2" parent="Levels/LevelSelector44" instance=ExtResource( 11 )]
+position = Vector2( 312, 168 )
+
+[node name="Spike3" parent="Levels/LevelSelector44" instance=ExtResource( 7 )]
+position = Vector2( 312, 216 )
+
+[node name="Spike4" parent="Levels/LevelSelector44" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Spike5" parent="Levels/LevelSelector44" instance=ExtResource( 7 )]
+position = Vector2( 312, 312 )
+
+[node name="Block3" parent="Levels/LevelSelector44" instance=ExtResource( 1 )]
+position = Vector2( 168, 216 )
+
+[node name="LevelSelector45" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 45
+
+[node name="Block" parent="Levels/LevelSelector45" instance=ExtResource( 1 )]
+position = Vector2( 120, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector45" instance=ExtResource( 1 )]
+position = Vector2( 360, 408 )
+
+[node name="Block3" parent="Levels/LevelSelector45" instance=ExtResource( 1 )]
+position = Vector2( 168, 312 )
+
+[node name="Block4" parent="Levels/LevelSelector45" instance=ExtResource( 1 )]
+position = Vector2( 312, 312 )
+
+[node name="Coin" parent="Levels/LevelSelector45" instance=ExtResource( 18 )]
+position = Vector2( 264, 216 )
+
+[node name="Spike" parent="Levels/LevelSelector45" instance=ExtResource( 7 )]
+position = Vector2( 216, 216 )
+
+[node name="Spike2" parent="Levels/LevelSelector45" instance=ExtResource( 7 )]
+position = Vector2( 216, 408 )
+
+[node name="Spike3" parent="Levels/LevelSelector45" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector45" instance=ExtResource( 15 )]
+position = Vector2( 216, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector45" instance=ExtResource( 15 )]
+position = Vector2( 264, 360 )
+
+[node name="LevelSelector46" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 46
+
+[node name="Spike" parent="Levels/LevelSelector46" instance=ExtResource( 7 )]
+position = Vector2( 168, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector46" instance=ExtResource( 7 )]
+position = Vector2( 312, 408 )
+
+[node name="Block" parent="Levels/LevelSelector46" instance=ExtResource( 1 )]
+position = Vector2( 120, 408 )
+
+[node name="Spike3" parent="Levels/LevelSelector46" instance=ExtResource( 7 )]
+position = Vector2( 120, 264 )
+
+[node name="Invisi" parent="Levels/LevelSelector46" instance=ExtResource( 11 )]
+position = Vector2( 216, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector46" instance=ExtResource( 11 )]
+position = Vector2( 264, 312 )
+
+[node name="Spike4" parent="Levels/LevelSelector46" instance=ExtResource( 7 )]
+position = Vector2( 312, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector46" instance=ExtResource( 1 )]
+position = Vector2( 120, 216 )
+
+[node name="Coin" parent="Levels/LevelSelector46" instance=ExtResource( 18 )]
+position = Vector2( 264, 72 )
+
+[node name="Spike5" parent="Levels/LevelSelector46" instance=ExtResource( 7 )]
+position = Vector2( 360, 408 )
+
+[node name="LevelSelector47" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 47
+
+[node name="Invisi" parent="Levels/LevelSelector47" instance=ExtResource( 11 )]
+position = Vector2( 120, 408 )
+
+[node name="Invisi2" parent="Levels/LevelSelector47" instance=ExtResource( 11 )]
+position = Vector2( 216, 312 )
+
+[node name="Invisi3" parent="Levels/LevelSelector47" instance=ExtResource( 11 )]
+position = Vector2( 120, 216 )
+
+[node name="Invisi5" parent="Levels/LevelSelector47" instance=ExtResource( 11 )]
+position = Vector2( 168, 72 )
+
+[node name="Coin" parent="Levels/LevelSelector47" instance=ExtResource( 18 )]
+position = Vector2( 360, 120 )
+
+[node name="Spike" parent="Levels/LevelSelector47" instance=ExtResource( 7 )]
+position = Vector2( 312, 120 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector47" instance=ExtResource( 15 )]
+position = Vector2( 120, 168 )
+
+[node name="LevelSelector48" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 48
+
+[node name="Invisi" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 168, 360 )
+
+[node name="Invisi2" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 216, 312 )
+
+[node name="Invisi3" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 216, 360 )
+
+[node name="Invisi4" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 216, 408 )
+
+[node name="Invisi5" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 120, 216 )
+
+[node name="Invisi6" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 264, 168 )
+
+[node name="Invisi7" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 312, 312 )
+
+[node name="Spike" parent="Levels/LevelSelector48" instance=ExtResource( 7 )]
+position = Vector2( 264, 264 )
+
+[node name="Coin" parent="Levels/LevelSelector48" instance=ExtResource( 18 )]
+position = Vector2( 264, 312 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector48" instance=ExtResource( 15 )]
+position = Vector2( 312, 360 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector48" instance=ExtResource( 15 )]
+position = Vector2( 312, 408 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector48" instance=ExtResource( 15 )]
+position = Vector2( 264, 360 )
+
+[node name="RythmBlock4" parent="Levels/LevelSelector48" instance=ExtResource( 15 )]
+position = Vector2( 264, 408 )
+
+[node name="Invisi8" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 360, 312 )
+
+[node name="Invisi9" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 360, 168 )
+
+[node name="Invisi10" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 360, 216 )
+
+[node name="Spike2" parent="Levels/LevelSelector48" instance=ExtResource( 7 )]
+position = Vector2( 360, 264 )
+
+[node name="Invisi11" parent="Levels/LevelSelector48" instance=ExtResource( 11 )]
+position = Vector2( 360, 120 )
+
+[node name="Block" parent="Levels/LevelSelector48" instance=ExtResource( 1 )]
+position = Vector2( 360, 72 )
+
+[node name="LevelSelector49" parent="Levels" instance=ExtResource( 2 )]
+activation_level = 49
+
+[node name="Spike" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 264, 408 )
+
+[node name="Spike2" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 264, 360 )
+
+[node name="Spike4" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 264, 264 )
+
+[node name="Block" parent="Levels/LevelSelector49" instance=ExtResource( 1 )]
+position = Vector2( 216, 360 )
+
+[node name="Block2" parent="Levels/LevelSelector49" instance=ExtResource( 1 )]
+position = Vector2( 168, 264 )
+
+[node name="Spike5" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 120, 360 )
+
+[node name="Spike6" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 120, 312 )
+
+[node name="Spike7" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 120, 264 )
+
+[node name="RythmBlock2" parent="Levels/LevelSelector49" instance=ExtResource( 15 )]
+position = Vector2( 216, 312 )
+
+[node name="RythmBlock3" parent="Levels/LevelSelector49" instance=ExtResource( 15 )]
+position = Vector2( 216, 264 )
+
+[node name="Spike8" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 264, 216 )
+
+[node name="Spike9" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 120, 216 )
+
+[node name="Block3" parent="Levels/LevelSelector49" instance=ExtResource( 1 )]
+position = Vector2( 264, 168 )
+
+[node name="RythmBlock" parent="Levels/LevelSelector49" instance=ExtResource( 15 )]
+position = Vector2( 312, 216 )
+
+[node name="Spike11" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 360, 120 )
+
+[node name="Spike12" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 360, 72 )
+
+[node name="Spike13" parent="Levels/LevelSelector49" instance=ExtResource( 7 )]
+position = Vector2( 312, 24 )
+
+[node name="Coin" parent="Levels/LevelSelector49" instance=ExtResource( 18 )]
+position = Vector2( 360, 216 )
+
+[node name="Block4" parent="Levels/LevelSelector49" instance=ExtResource( 1 )]
+position = Vector2( 264, 312 )
+
+[node name="Invisi" parent="Levels/LevelSelector49" instance=ExtResource( 11 )]
+position = Vector2( 360, 168 )
+
+[node name="LevelSelector50" parent="Levels" instance=ExtResource( 2 )]
+visible = false
+activation_level = 50
+
+[node name="Block" parent="Levels/LevelSelector50" instance=ExtResource( 1 )]
+position = Vector2( 168, 408 )
+
+[node name="Block2" parent="Levels/LevelSelector50" instance=ExtResource( 1 )]
+position = Vector2( 216, 312 )
+
+[node name="Block3" parent="Levels/LevelSelector50" instance=ExtResource( 1 )]
+position = Vector2( 264, 216 )
+
+[node name="Coin" parent="Levels/LevelSelector50" instance=ExtResource( 12 )]
+position = Vector2( 312, 120 )
+
+[node name="Hero" parent="." instance=ExtResource( 3 )]
+level = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 120.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "0
+"
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

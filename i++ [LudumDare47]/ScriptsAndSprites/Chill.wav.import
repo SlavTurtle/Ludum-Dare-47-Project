@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Chill.wav-c80905993db9473c24a180856afe7a14.sample"
+
+[deps]
+
+source_file="res://ScriptsAndSprites/Chill.wav"
+dest_files=[ "res://.import/Chill.wav-c80905993db9473c24a180856afe7a14.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
